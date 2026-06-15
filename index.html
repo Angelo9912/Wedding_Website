@@ -9,13 +9,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* Palette Colori dall'immagine */
+        /* Palette Colori */
         :root {
-            --bg-cream: #f4f0ea;       /* Lo sfondo avorio chiaro della foto */
-            --sage-green: #8ba18e;     /* Il verde salvia della barra icone */
-            --sage-dark: #6b7f6e;      /* Verde salvia scuro per i bottoni al passaggio del mouse */
-            --text-dark: #2c3531;      /* Il grigio antracite scurissimo per i testi */
-            --text-muted: #6e7571;    /* Grigio intermedio per i dettagli */
+            --bg-cream: #f4f0ea;       
+            --sage-green: #8ba18e;     
+            --sage-dark: #6b7f6e;      
+            --text-dark: #2c3531;      
+            --text-muted: #6e7571;    
             --white: #ffffff;
         }
 
@@ -46,7 +46,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
-        /* Header con lo stile dell'immagine */
+        /* Header */
         .header-section {
             padding: 50px 30px;
             text-align: center;
@@ -80,37 +80,55 @@
             margin-top: 15px;
         }
 
-        /* Banner Verde Salvia con le Icone (Stile Wedding Planner della foto) */
-        .icon-banner {
+        /* Nuova Banda Menu con Tasti Cliccabili */
+        .menu-banner {
             background-color: var(--sage-green);
-            color: var(--white);
             display: flex;
             justify-content: space-around;
-            padding: 15px 10px;
+            padding: 0;
+            border: none;
+        }
+
+        .menu-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            color: var(--white);
+            padding: 20px 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: background 0.3s ease;
             text-align: center;
         }
 
-        .icon-item {
-            flex: 1;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 300;
+        .menu-btn:hover {
+            background-color: var(--sage-dark);
         }
 
-        .icon-item svg {
-            display: block;
-            margin: 0 auto 6px auto;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 1.5;
-            width: 22px;
-            height: 22px;
+        /* Stile per il tasto attivo al momento */
+        .menu-btn.active {
+            background-color: var(--text-dark);
+            font-weight: 600;
         }
 
-        /* Contenuto principale con i dettagli */
+        /* Sezioni di Contenuto */
         .content-section {
             padding: 40px 30px;
+            min-height: 300px; 
+        }
+
+        /* Classe di utilità per nascondere le sezioni non attive */
+        .tab-content {
+            display: none;
+        }
+
+        /* Mostra solo la sezione attiva */
+        .tab-content.active {
+            display: block;
         }
 
         .intro-text {
@@ -121,7 +139,7 @@
             font-weight: 300;
         }
 
-        /* Struttura della Timeline / Programma */
+        /* Struttura della Timeline */
         .event-block {
             margin-bottom: 35px;
             position: relative;
@@ -151,7 +169,7 @@
             font-weight: 300;
         }
 
-        /* Bottoni eleganti e minimali */
+        /* Bottoni Mappe */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -170,13 +188,21 @@
 
         .btn:hover {
             background-color: var(--sage-dark);
-            transform: translateY(-1px);
         }
 
         .btn svg {
             width: 14px;
             height: 14px;
             fill: currentColor;
+        }
+
+        /* Pagine temporaneamente vuote */
+        .empty-page-message {
+            text-align: center;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 50px;
+            font-weight: 300;
         }
 
         footer {
@@ -200,49 +226,51 @@
             <div class="wedding-date">Sabato, 2 Ottobre 2027</div>
         </div>
 
-        <div class="icon-banner">
-            <div class="icon-item">
-                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Celebra
-            </div>
-            <div class="icon-item">
-                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                Luoghi
-            </div>
-            <div class="icon-item">
-                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                Festa
-            </div>
-        </div>
+        <nav class="menu-banner">
+            <button class="menu-btn active" onclick="openTab('programma', this)">Programma</button>
+            <button class="menu-btn" onclick="openTab('arrivare', this)">Come arrivare a Reggio</button>
+            <button class="menu-btn" onclick="openTab('alloggiare', this)">Dove Alloggiare</button>
+            <button class="menu-btn" onclick="openTab('alloggiare', this)">Cash</button>
+        </nav>
 
         <div class="content-section">
             
-            <p class="intro-text">Benvenuti nella pagina dedicata al nostro giorno più bello. Qui troverete tutte le informazioni utili e le indicazioni stradali per raggiungerci.</p>
+            <div id="programma" class="tab-content active">
+                <p class="intro-text">Benvenuti nella pagina dedicata al nostro giorno più bello. Qui troverete tutte le informazioni utili e le indicazioni stradali per raggiungerci.</p>
 
-            <div class="event-block">
-                <div class="event-time">ORE 16:00</div>
-                <div class="event-title">La Cerimonia</div>
-                <div class="event-details">
-                    <strong>Chiesa di San Luca</strong><br>
-                    Via Sbarre Inferiori, 2, Reggio Calabria (RC)
+                <div class="event-block">
+                    <div class="event-time">ORE 16:00</div>
+                    <div class="event-title">Chiesa</div>
+                    <div class="event-details">
+                        <strong>Chiesa di San Luca</strong><br>
+                        Via Sbarre Inferiori, 2, Reggio Calabria (RC)
+                    </div>
+                    <a href="https://www.google.com/maps/place/Chiesa+Parrocchiale+di+San+Luca+Evangelista/@38.0841468,15.6361733,1178m/data=!3m2!1e3!4b1!4m6!3m5!1s0x13145a8bd2cd0957:0xe4220ea7cbdcff8f!8m2!3d38.0841426!4d15.6387482!16s%2Fg%2F1wjwxr6p?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2z"/></svg>
+                        Apri Navigatore
+                    </a>
                 </div>
-                <a href="https://www.google.com/maps/place/Chiesa+Parrocchiale+di+San+Luca+Evangelista/@38.0841468,15.6361733,1178m/data=!3m2!1e3!4b1!4m6!3m5!1s0x13145a8bd2cd0957:0xe4220ea7cbdcff8f!8m2!3d38.0841426!4d15.6387482!16s%2Fg%2F1wjwxr6p?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn">
-                    <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2z"/></svg>
-                    Apri Navigatore
-                </a>
+
+                <div class="event-block" style="margin-bottom: 10px;">
+                    <div class="event-time">ORE 19:30</div>
+                    <div class="event-title">Sala</div>
+                    <div class="event-details">
+                        <strong>Villa Bella</strong><br>
+                        Reggio Calabria (RC)
+                    </div>
+                    <a href="https://www.google.com/maps/place/Chiesa+Parrocchiale+di+San+Luca+Evangelista/@38.0841468,15.6361733,1178m/data=!3m2!1e3!4b1!4m6!3m5!1s0x13145a8bd2cd0957:0xe4220ea7cbdcff8f!8m2!3d38.0841426!4d15.6387482!16s%2Fg%2F1wjwxr6p?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2z"/></svg>
+                        Apri Navigatore
+                    </a>
+                </div>
             </div>
 
-            <div class="event-block" style="margin-bottom: 10px;">
-                <div class="event-time">A SEGUIRE</div>
-                <div class="event-title">Il Ricevimento</div>
-                <div class="event-details">
-                    <strong>Villa Bella</strong><br>
-                    Reggio Calabria (RC)
-                </div>
-                <a href="https://www.google.com/maps/place/Chiesa+Parrocchiale+di+San+Luca+Evangelista/@38.0841468,15.6361733,1178m/data=!3m2!1e3!4b1!4m6!3m5!1s0x13145a8bd2cd0957:0xe4220ea7cbdcff8f!8m2!3d38.0841426!4d15.6387482!16s%2Fg%2F1wjwxr6p?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn">
-                    <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2z"/></svg>
-                    Apri Navigatore
-                </a>
+            <div id="arrivare" class="tab-content">
+                <p class="empty-page-message">Le informazioni su come arrivare saranno disponibili a breve.</p>
+            </div>
+
+            <div id="alloggiare" class="tab-content">
+                <p class="empty-page-message">I dettagli sugli alloggi consigliati saranno inseriti a breve.</p>
             </div>
 
         </div>
@@ -252,6 +280,23 @@
         </footer>
 
     </div>
+
+    <script>
+        function openTab(tabId, buttonClicked) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const buttons = document.querySelectorAll('.menu-btn');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            document.getElementById(tabId).classList.add('active');
+            buttonClicked.classList.add('active');
+        }
+    </script>
 
 </body>
 </html>
