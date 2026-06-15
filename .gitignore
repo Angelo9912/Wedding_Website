@@ -1,0 +1,17 @@
+# Cartelle delle dipendenze (da non caricare MAI)
+node_modules/
+dist/
+build/
+
+# File di configurazione locali e credenziali (es. chiavi API, password)
+.env
+.env.local
+
+# File di sistema ed editor
+.DS_Store
+.vscode/
+.idea/
+*.log
+
+# File temporanei o di build locali
+out/
