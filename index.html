@@ -655,13 +655,11 @@
                         <input type="text" id="cognome" name="Cognome" required oninput="validaForm()">
                     </div>
 
-                    <!-- CAMPO EMAIL DIVENTATO FACOLTATIVO -->
                     <div class="form-group">
                         <label for="email">Indirizzo Email <span class="optional-label">(Opzionale)</span></label>
                         <input type="email" id="email" name="Email" oninput="validaForm()">
                     </div>
 
-                    <!-- SCELTA PRESENZA "ANZIANO-PROOF" -->
                     <div class="form-group">
                         <label>Ci sarai al nostro matrimonio? *</label>
                         <div class="scelta-presenza-group">
@@ -674,7 +672,6 @@
                         </div>
                     </div>
 
-                    <!-- SEZIONE SELEZIONE ALIMENTARE -->
                     <div id="sezione-menu" class="form-group">
                         <div class="form-group">
                             <label>Regime Alimentare</label>
@@ -714,6 +711,7 @@
     </div>
 
     <script>
+        // Funzione per la navigazione interna tra le sezioni (Tab)
         function openTab(tabId, buttonClicked) {
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => {
@@ -761,7 +759,7 @@
             validaForm();
         }
 
-        // Monitora i requisiti minimi (Email ora facoltativa, ma controllata se compilata)
+        // Monitora i requisiti minimi di attivazione del tasto di invio
         function validaForm() {
             const nome = document.getElementById('nome').value.trim();
             const cognome = document.getElementById('cognome').value.trim();
@@ -770,7 +768,7 @@
             
             const opzionePresenza = document.querySelector('input[name="Presenza"]:checked');
             
-            // È valida se è vuota OPPURE se contiene i caratteri minimi di una mail
+            // È valida se lasciata vuota OPPURE se ha i parametri minimi corretti
             const emailValida = (email === "") || (email.includes('@') && email.includes('.'));
 
             if (nome !== "" && cognome !== "" && emailValida && opzionePresenza !== null) {
@@ -780,7 +778,7 @@
             }
         }
 
-        // Invio asincrono sicuro con protezione delle e-mail e cc per Alessia
+        // Invio asincrono parallelo (Email via FormSubmit + Scrittura diretta su Google Fogli)
         function inviaRsvp(event) {
             event.preventDefault();
             
@@ -798,6 +796,7 @@
             const u1 = "angelo" + "massara" + "79" + "@" + "gmail.com";
             const u2 = "alessia" + "cotronei" + "98" + "@" + "gmail.com";
 
+            // Creazione del pacchetto dati JSON unificato
             const dati = {
                 Nome: nomeVal,
                 Cognome: cognomeVal,
@@ -811,42 +810,51 @@
                 _captcha: "false"
             };
 
-            fetch("https://formsubmit.co/ajax/" + u1, {
+            // SOSTITUISCI QUESTA STRINGA CON L'URL COPIATO DA NUOVA DISTRIBUZIONE SU APPS SCRIPT
+            const urlGoogleScript = "https://script.google.com/macros/s/AKfycbwy4q2XLFmSSogejL1qvtBmXc-oDO1KHrZFoXrn-NqsnvfbDq1z0G5aLd6v3C_tZ-1xbw/exec";
+
+            // Chiamata 1: Invio a FormSubmit per ricevere le email di notifica
+            const invioFormSubmit = fetch("https://formsubmit.co/ajax/" + u1, {
                 method: "POST",
-                headers: { 
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
+                headers: { "Content-Type": "application/json", "Accept": "application/json" },
                 body: JSON.stringify(dati)
-            })
-            .then(response => {
-                if (response.ok) {
-                    feedback.style.display = "block";
-                    feedback.style.backgroundColor = "#e8f5e9";
-                    feedback.style.color = "#2e7d32";
-                    feedback.innerText = "Grazie! La tua risposta è stata registrata con successo.";
-                    btnInvia.innerText = "Inviato!";
-                    
-                    document.getElementById('form-rsvp').reset();
-                    const labels = document.querySelectorAll('.presenza-label');
-                    labels.forEach(label => {
-                        label.style.borderColor = "#ccc";
-                        label.style.background = "#fff";
-                        label.style.color = "var(--text-dark)";
-                    });
-                    document.getElementById('sezione-menu').style.display = "block";
-                } else {
-                    throw new Error("Errore server");
-                }
+            });
+
+            // Chiamata 2: Invio a Google Apps Script per popolare il database
+            const invioGoogleFogli = fetch(urlGoogleScript, {
+                method: "POST",
+                mode: "no-cors", // Evita i blocchi CORS cross-origin standard di Google
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(dati)
+            });
+
+            // Gestione parallela delle due chiamate
+            Promise.all([invioFormSubmit, invioGoogleFogli])
+            .then(() => {
+                feedback.style.display = "block";
+                feedback.style.backgroundColor = "#e8f5e9";
+                feedback.style.color = "#2e7d32";
+                feedback.innerText = "Grazie! La tua risposta è stata registrata con successo.";
+                btnInvia.innerText = "Inviato!";
+                
+                // Reset form e pulizia grafica dei pulsantoni di selezione presenza
+                document.getElementById('form-rsvp').reset();
+                const labels = document.querySelectorAll('.presenza-label');
+                labels.forEach(label => {
+                    label.style.borderColor = "#ccc";
+                    label.style.background = "#fff";
+                    label.style.color = "var(--text-dark)";
+                });
+                document.getElementById('sezione-menu').style.display = "block";
             })
             .catch(error => {
                 feedback.style.display = "block";
                 feedback.style.backgroundColor = "#ffebee";
                 feedback.style.color = "#c62828";
-                feedback.innerText = "Risposta simulata (Il form si attiverà non appena il sito sarà online).";
+                feedback.innerText = "Si è verificato un errore durante l'invio. Riprova più tardi.";
                 btnInvia.innerText = "Invia Risposta";
                 btnInvia.disabled = false;
-                console.log("Nota: Blocco CORS in locale normale.", error);
+                console.error("Errore nell'esecuzione dell'invio unificato:", error);
             });
         }
     </script>
