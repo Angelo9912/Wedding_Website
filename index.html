@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* Palette Colori */
+        /* Palette Colori Originale */
         :root {
             --bg-cream: #f4f0ea;       
             --sage-green: #8ba18e;     
@@ -17,6 +17,7 @@
             --text-dark: #2c3531;      
             --text-muted: #6e7571;    
             --white: #ffffff;
+            --rose-antico: #cfa59f;
         }
 
         * {
@@ -30,23 +31,27 @@
             background-color: var(--bg-cream);
             color: var(--text-dark);
             line-height: 1.6;
-            padding: 20px 10px;
+            padding: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
         }
 
+        /* CONTAINER PRINCIPALE */
         .main-container {
             background-color: var(--white);
-            max-width: 500px;
             width: 100%;
+            max-width: 500px; /* Compatto su Mobile */
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
         }
 
-        /* Header */
+        /* Header (Copertina) */
         .header-section {
             padding: 50px 30px;
             text-align: center;
@@ -67,9 +72,9 @@
             font-size: 2.8rem;
             font-weight: 400;
             line-height: 1.1;
-            color: var(--text-dark);
             margin-bottom: 10px;
             letter-spacing: 1px;
+            color: var(--rose-antico);
         }
 
         .wedding-date {
@@ -80,7 +85,7 @@
             margin-top: 15px;
         }
 
-        /* Nuova Banda Menu con Tasti Cliccabili */
+        /* Menu di Navigazione */
         .menu-banner {
             background-color: var(--sage-green);
             display: flex;
@@ -94,14 +99,14 @@
             background: none;
             border: none;
             color: var(--white);
-            padding: 20px 5px;
+            padding: 15px 2px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.65rem; 
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             font-weight: 400;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
             text-align: center;
         }
 
@@ -109,7 +114,6 @@
             background-color: var(--sage-dark);
         }
 
-        /* Stile per il tasto attivo al momento */
         .menu-btn.active {
             background-color: var(--text-dark);
             font-weight: 600;
@@ -117,29 +121,29 @@
 
         /* Sezioni di Contenuto */
         .content-section {
-            padding: 40px 30px;
+            padding: 40px 25px;
             min-height: 300px; 
+            flex-grow: 1;
         }
 
-        /* Classe di utilità per nascondere le sezioni non attive */
+        /* Gestione Tabs fissa per tutti i dispositivi */
         .tab-content {
-            display: none;
+            display: none !important;
         }
 
-        /* Mostra solo la sezione attiva */
         .tab-content.active {
-            display: block;
+            display: block !important;
         }
 
         .intro-text {
             text-align: center;
             font-size: 1rem;
-            color: var(--text-muted);
             margin-bottom: 35px;
             font-weight: 300;
+            color: var(--rose-antico);
         }
 
-        /* Struttura della Timeline */
+        /* Timeline ed elementi di viaggio */
         .event-block {
             margin-bottom: 35px;
             position: relative;
@@ -158,8 +162,8 @@
         .event-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.6rem;
-            color: var(--text-dark);
             margin-bottom: 8px;
+            color: var(--rose-antico);
         }
 
         .event-details {
@@ -169,7 +173,117 @@
             font-weight: 300;
         }
 
-        /* Bottoni Mappe */
+        /* Stili specifici per la sezione collegamenti */
+        .section-title-travel {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--sage-dark);
+            margin: 25px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--bg-cream);
+            padding-bottom: 5px;
+        }
+
+        .section-title-travel svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--sage-dark);
+        }
+
+        .airport-list {
+            list-style: none;
+            padding-left: 5px;
+            margin-bottom: 20px;
+        }
+
+        .airport-list li {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 400;
+        }
+
+        .airport-list li::before {
+            content: "✈";
+            color: var(--rose-antico);
+            font-size: 1.1rem;
+        }
+
+        .iata-code {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            background-color: var(--bg-cream);
+            padding: 1px 5px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .ryanair-badge {
+            background-color: #073590;
+            color: #f1c40f;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            display: inline-block;
+            letter-spacing: 0.5px;
+            margin-left: 5px;
+        }
+
+        .step-box {
+            background-color: var(--bg-cream);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--rose-antico);
+        }
+
+        .step-title {
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .step-title svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--text-dark);
+        }
+
+        .step-text {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 300;
+        }
+
+        .tip-box {
+            background-color: #faf8f5;
+            border: 1px dashed var(--sage-green);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .tip-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--sage-dark);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        /* Bottoni */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -196,7 +310,6 @@
             fill: currentColor;
         }
 
-        /* Pagine temporaneamente vuote */
         .empty-page-message {
             text-align: center;
             color: var(--text-muted);
@@ -214,6 +327,80 @@
             background-color: #faf8f5;
             border-top: 1px solid var(--bg-cream);
         }
+
+        /* ==================================================
+           MEDIA QUERY: TUTTO SCHERMO SU PC (Sopra i 992px)
+           ================================================== */
+        @media screen and (min-width: 992px) {
+            body {
+                padding: 30px; 
+                height: 100vh;
+                overflow: hidden; 
+            }
+
+            .main-container {
+                max-width: 100%; 
+                width: 100%;
+                height: 100%; 
+                display: grid;
+                grid-template-columns: 35% 1fr; 
+                grid-template-rows: auto 1fr auto;
+            }
+
+            .header-section {
+                grid-column: 1;
+                grid-row: 1 / 3; 
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 50px;
+                border-right: 1px solid var(--bg-cream);
+                background: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(244,240,234,0.5) 100%);
+            }
+
+            h1 {
+                font-size: 3.8rem; 
+            }
+
+            .menu-banner {
+                grid-column: 2;
+                grid-row: 1;
+            }
+
+            .menu-btn {
+                padding: 25px 10px;
+                font-size: 0.8rem;
+                letter-spacing: 1px;
+            }
+
+            .content-section {
+                grid-column: 2;
+                grid-row: 2;
+                padding: 60px 80px;
+                overflow-y: auto; 
+            }
+
+            .intro-text {
+                font-size: 1.1rem;
+                max-width: 700px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .tab-content.active {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            footer {
+                grid-column: 1 / 3;
+                grid-row: 3;
+                padding: 20px;
+                background-color: #faf8f5;
+                border-top: 1px solid var(--bg-cream);
+            }
+        }
     </style>
 </head>
 <body>
@@ -228,13 +415,14 @@
 
         <nav class="menu-banner">
             <button class="menu-btn active" onclick="openTab('programma', this)">Programma</button>
-            <button class="menu-btn" onclick="openTab('arrivare', this)">Come arrivare a Reggio</button>
+            <button class="menu-btn" onclick="openTab('arrivare', this)">Collegamenti con Reggio</button>
             <button class="menu-btn" onclick="openTab('alloggiare', this)">Dove Alloggiare</button>
-            <button class="menu-btn" onclick="openTab('alloggiare', this)">Cash</button>
+            <button class="menu-btn" onclick="openTab('regalo', this)">Regalo</button>
         </nav>
 
         <div class="content-section">
             
+            <!-- PROGRAMMA -->
             <div id="programma" class="tab-content active">
                 <p class="intro-text">Benvenuti nella pagina dedicata al nostro giorno più bello. Qui troverete tutte le informazioni utili e le indicazioni stradali per raggiungerci.</p>
 
@@ -245,7 +433,7 @@
                         <strong>Chiesa di San Luca</strong><br>
                         Via Sbarre Inferiori, 2, Reggio Calabria (RC)
                     </div>
-                    <a href="https://www.google.com/maps/place/Chiesa+Parrocchiale+di+San+Luca+Evangelista/@38.0841468,15.6361733,1178m/data=!3m2!1e3!4b1!4m6!3m5!1s0x13145a8bd2cd0957:0xe4220ea7cbdcff8f!8m2!3d38.0841426!4d15.6387482!16s%2Fg%2F1wjwxr6p?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn">
+                    <a href="https://maps.google.com" target="_blank" class="btn">
                         <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2z"/></svg>
                         Apri Navigatore
                     </a>
@@ -255,22 +443,78 @@
                     <div class="event-time">ORE 19:30</div>
                     <div class="event-title">Sala</div>
                     <div class="event-details">
-                        <strong>Villa Bella</strong><br>
+                        <strong>Villa Boh</strong><br>
                         Reggio Calabria (RC)
                     </div>
-                    <a href="https://www.google.com/maps/place/Chiesa+Parrocchiale+di+San+Luca+Evangelista/@38.0841468,15.6361733,1178m/data=!3m2!1e3!4b1!4m6!3m5!1s0x13145a8bd2cd0957:0xe4220ea7cbdcff8f!8m2!3d38.0841426!4d15.6387482!16s%2Fg%2F1wjwxr6p?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn">
+                    <a href="https://maps.google.com" target="_blank" class="btn">
                         <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2z"/></svg>
                         Apri Navigatore
                     </a>
                 </div>
             </div>
 
+            <!-- COLLEGAMENTI CON REGGIO -->
             <div id="arrivare" class="tab-content">
-                <p class="empty-page-message">Le informazioni su come arrivare saranno disponibili a breve.</p>
+                <p class="intro-text">Abbiamo raccolto qui le principali tratte aeree e ferroviarie consigliate per raggiungerci comodamente.</p>
+                
+                <div class="section-title-travel">
+                    <!-- Icona Aereo SVG -->
+                    <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L14 19v-5.5l7 2.5z"/></svg>
+                    Voli Diretti per Reggio Calabria <span class="iata-code" style="margin-left:5px;">REG</span>
+                </div>
+                <p class="event-details" style="margin-bottom: 15px;">È possibile raggiungere direttamente l'Aeroporto dello Stretto con voli diretti <span class="ryanair-badge">Ryanair</span> in partenza da:</p>
+                
+                <ul class="airport-list">
+                    <li>Milano Bergamo <span class="iata-code">BGY</span></li>
+                    <li>Milano Malpensa <span class="iata-code">MXP</span></li>
+                    <li>Bologna <span class="iata-code">BLQ</span></li>
+                    <li>Torino <span class="iata-code">TRN</span></li>
+                    <li>Pisa <span class="iata-code">PSA</span></li>
+                    <li>Venezia <span class="iata-code">VCE</span></li>
+                    <li>Parma <span class="iata-code">PMF</span></li>
+                </ul>
+
+                <div class="section-title-travel">
+                    <!-- Icona Percorso SVG -->
+                    <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L14 19v-5.5l7 2.5z"/></svg>
+                    Rotta da Genova <span class="iata-code" style="margin-left:5px;">GOA</span> (via Lamezia)
+                </div>
+                <p class="event-details" style="margin-bottom: 15px;">Per chi viaggia da Genova, l'alternativa più comoda prevede l'arrivo all'Aeroporto di Lamezia Terme <span class="iata-code">SUF</span>:</p>
+                
+                <div class="step-box">
+                    <div class="step-title">
+                        <!-- Icona Aereo Mini SVG -->
+                        <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L14 19v-5.5l7 2.5z"/></svg>
+                        1. Volo Genova (GOA) ➔ Lamezia Terme (SUF)
+                    </div>
+                    <div class="step-text">Volo diretto operato da <span class="ryanair-badge">Ryanair</span>.</div>
+                </div>
+
+                <div class="step-box">
+                    <div class="step-title">2. Navetta Aeroporto ➔ Stazione Centrale</div>
+                    <div class="step-text">Prendere l'autobus <strong>Airlink</strong> fuori dall'aeroporto fino alla stazione ferroviaria di Lamezia Terme Centrale. I biglietti sono acquistabili presso il tabacchino all'interno dell'aeroporto.</div>
+                </div>
+
+                <div class="step-box">
+                    <div class="step-title">3. Treno Lamezia ➔ Reggio Calabria Centrale</div>
+                    <div class="step-text">Dalla stazione di Lamezia Terme Centrale partono frequenti collegamenti verso Reggio Calabria Centrale tramite treni <strong>Regionali, Intercity, Frecciarossa</strong> e <strong>Italo</strong>.</div>
+                </div>
+
+                <!-- Box Autonoleggio -->
+                <div class="tip-box">
+                    <div class="tip-title">🚗 Serve un'auto a noleggio?</div>
+                    <div class="step-text">Sia all'Aeroporto di Reggio Calabria <span class="iata-code">REG</span> che a quello di Lamezia Terme <span class="iata-code">SUF</span>, la compagnia di autonoleggio da noi consigliata è <strong>Sicily By Car</strong>.</div>
+                </div>
             </div>
 
+            <!-- DOVE ALLOGGIARE -->
             <div id="alloggiare" class="tab-content">
                 <p class="empty-page-message">I dettagli sugli alloggi consigliati saranno inseriti a breve.</p>
+            </div>
+
+            <!-- REGALO -->
+            <div id="regalo" class="tab-content">
+                <p class="empty-page-message">I dettagli per il regalo o l'Iban saranno inseriti a breve.</p>
             </div>
 
         </div>
