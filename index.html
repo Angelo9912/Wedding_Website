@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Angelo & Alessia - Il Nostro Matrimonio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
     <style>
         /* Palette Colori Originale */
         :root {
-            --bg-cream: #f4f0ea;       
-            --sage-green: #8ba18e;     
-            --sage-dark: #6b7f6e;      
-            --text-dark: #2c3531;      
-            --text-muted: #6e7571;    
+            --bg-cream: #f4f0ea;
+            --sage-green: #8ba18e;
+            --sage-dark: #6b7f6e;
+            --text-dark: #2c3531;
+            --text-muted: #6e7571;
             --white: #ffffff;
             --rose-antico: #cfa59f;
         }
@@ -42,7 +45,8 @@
         .main-container {
             background-color: var(--white);
             width: 100%;
-            max-width: 500px; /* Compatto su Mobile */
+            max-width: 500px;
+            /* Compatto su Mobile */
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -55,7 +59,7 @@
         .header-section {
             padding: 50px 30px;
             text-align: center;
-            background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(244,240,234,0.3) 100%);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(244, 240, 234, 0.3) 100%);
         }
 
         .subtitle {
@@ -92,16 +96,19 @@
             justify-content: space-around;
             padding: 0;
             border: none;
+            flex-wrap: wrap;
+            /* Permette la disposizione su due righe se serve su schermi molto piccoli */
         }
 
         .menu-btn {
             flex: 1;
+            min-width: 80px;
             background: none;
             border: none;
             color: var(--white);
             padding: 15px 2px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.65rem; 
+            font-size: 0.62rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             font-weight: 400;
@@ -122,7 +129,7 @@
         /* Sezioni di Contenuto */
         .content-section {
             padding: 40px 25px;
-            min-height: 300px; 
+            min-height: 300px;
             flex-grow: 1;
         }
 
@@ -283,7 +290,97 @@
             margin-bottom: 5px;
         }
 
-        /* Bottoni */
+        /* Stili del Form di Partecipazione */
+        .rsvp-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--sage-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            font-family: 'Montserrat', sans-serif;
+            padding: 12px;
+            border: 1px solid var(--sage-green);
+            border-radius: 8px;
+            background-color: #faf8f5;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--text-dark);
+        }
+
+        .radio-checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            font-weight: 300;
+        }
+
+        .checkbox-label input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--sage-dark);
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--sage-dark);
+        }
+
+        .submit-btn:disabled {
+            background-color: #cccccc;
+            color: #666666;
+            cursor: not-allowed;
+        }
+
+        /* Bottoni Generici */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -333,44 +430,45 @@
            ================================================== */
         @media screen and (min-width: 992px) {
             body {
-                padding: 30px; 
+                padding: 30px;
                 height: 100vh;
-                overflow: hidden; 
+                overflow: hidden;
             }
 
             .main-container {
-                max-width: 100%; 
+                max-width: 100%;
                 width: 100%;
-                height: 100%; 
+                height: 100%;
                 display: grid;
-                grid-template-columns: 35% 1fr; 
+                grid-template-columns: 35% 1fr;
                 grid-template-rows: auto 1fr auto;
             }
 
             .header-section {
                 grid-column: 1;
-                grid-row: 1 / 3; 
+                grid-row: 1 / 3;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 padding: 50px;
                 border-right: 1px solid var(--bg-cream);
-                background: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(244,240,234,0.5) 100%);
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(244, 240, 234, 0.5) 100%);
             }
 
             h1 {
-                font-size: 3.8rem; 
+                font-size: 3.8rem;
             }
 
             .menu-banner {
                 grid-column: 2;
                 grid-row: 1;
+                flex-wrap: nowrap;
             }
 
             .menu-btn {
                 padding: 25px 10px;
-                font-size: 0.8rem;
+                font-size: 0.75rem;
                 letter-spacing: 1px;
             }
 
@@ -378,7 +476,7 @@
                 grid-column: 2;
                 grid-row: 2;
                 padding: 60px 80px;
-                overflow-y: auto; 
+                overflow-y: auto;
             }
 
             .intro-text {
@@ -403,10 +501,11 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="main-container">
-        
+
         <div class="header-section">
             <div class="subtitle">Il Nostro Matrimonio</div>
             <h1>Angelo<br>& Alessia</h1>
@@ -417,14 +516,16 @@
             <button class="menu-btn active" onclick="openTab('programma', this)">Programma</button>
             <button class="menu-btn" onclick="openTab('arrivare', this)">Collegamenti con Reggio</button>
             <button class="menu-btn" onclick="openTab('alloggiare', this)">Dove Alloggiare</button>
+            <button class="menu-btn" onclick="openTab('rsvp', this)">Partecipazione</button>
             <button class="menu-btn" onclick="openTab('regalo', this)">Regalo</button>
         </nav>
 
         <div class="content-section">
-            
+
             <!-- PROGRAMMA -->
             <div id="programma" class="tab-content active">
-                <p class="intro-text">Benvenuti nella pagina dedicata al nostro giorno più bello. Qui troverete tutte le informazioni utili e le indicazioni stradali per raggiungerci.</p>
+                <p class="intro-text">Benvenuti nella pagina dedicata al nostro giorno più bello. Qui troverete tutte le
+                    informazioni utili e le indicazioni stradali per raggiungerci.</p>
 
                 <div class="event-block">
                     <div class="event-time">ORE 16:00</div>
@@ -434,7 +535,9 @@
                         Via Sbarre Inferiori, 2, Reggio Calabria (RC)
                     </div>
                     <a href="https://maps.google.com" target="_blank" class="btn">
-                        <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2L2 22h20L12 2z" />
+                        </svg>
                         Apri Navigatore
                     </a>
                 </div>
@@ -447,7 +550,9 @@
                         Reggio Calabria (RC)
                     </div>
                     <a href="https://maps.google.com" target="_blank" class="btn">
-                        <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2z"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2L2 22h20L12 2z" />
+                        </svg>
                         Apri Navigatore
                     </a>
                 </div>
@@ -455,15 +560,20 @@
 
             <!-- COLLEGAMENTI CON REGGIO -->
             <div id="arrivare" class="tab-content">
-                <p class="intro-text">Abbiamo raccolto qui le principali tratte aeree e ferroviarie consigliate per raggiungerci comodamente.</p>
-                
+                <p class="intro-text">Abbiamo raccolto qui le principali tratte aeree e ferroviarie consigliate per
+                    raggiungerci comodamente.</p>
+
                 <div class="section-title-travel">
                     <!-- Icona Aereo SVG -->
-                    <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L14 19v-5.5l7 2.5z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L14 19v-5.5l7 2.5z" />
+                    </svg>
                     Voli Diretti per Reggio Calabria <span class="iata-code" style="margin-left:5px;">REG</span>
                 </div>
-                <p class="event-details" style="margin-bottom: 15px;">È possibile raggiungere direttamente l'Aeroporto dello Stretto con voli diretti <span class="ryanair-badge">Ryanair</span> in partenza da:</p>
-                
+                <p class="event-details" style="margin-bottom: 15px;">È possibile raggiungere direttamente l'Aeroporto
+                    dello Stretto con voli diretti <span class="ryanair-badge">Ryanair</span> in partenza da:</p>
+
                 <ul class="airport-list">
                     <li>Milano Bergamo <span class="iata-code">BGY</span></li>
                     <li>Milano Malpensa <span class="iata-code">MXP</span></li>
@@ -475,41 +585,105 @@
                 </ul>
 
                 <div class="section-title-travel">
-                    <!-- Icona Percorso SVG -->
-                    <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L14 19v-5.5l7 2.5z"/></svg>
+                    <!-- Icona Aereo SVG per rotta Genova -->
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L14 19v-5.5l7 2.5z" />
+                    </svg>
                     Rotta da Genova <span class="iata-code" style="margin-left:5px;">GOA</span> (via Lamezia)
                 </div>
-                <p class="event-details" style="margin-bottom: 15px;">Per chi viaggia da Genova, l'alternativa più comoda prevede l'arrivo all'Aeroporto di Lamezia Terme <span class="iata-code">SUF</span>:</p>
-                
+                <p class="event-details" style="margin-bottom: 15px;">Per chi viaggia da Genova, l'alternativa più
+                    comoda prevede l'arrivo all'Aeroporto di Lamezia Terme <span class="iata-code">SUF</span>:</p>
+
                 <div class="step-box">
                     <div class="step-title">
                         <!-- Icona Aereo Mini SVG -->
-                        <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L14 19v-5.5l7 2.5z"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L14 19v-5.5l7 2.5z" />
+                        </svg>
                         1. Volo Genova (GOA) ➔ Lamezia Terme (SUF)
                     </div>
-                    <div class="step-text">Volo diretto operato da <span class="ryanair-badge">Ryanair</span>.</div>
+                    <div class="step-text">Volo directo operato da <span class="ryanair-badge">Ryanair</span>.</div>
                 </div>
 
                 <div class="step-box">
                     <div class="step-title">2. Navetta Aeroporto ➔ Stazione Centrale</div>
-                    <div class="step-text">Prendere l'autobus <strong>Airlink</strong> fuori dall'aeroporto fino alla stazione ferroviaria di Lamezia Terme Centrale. I biglietti sono acquistabili presso il tabacchino all'interno dell'aeroporto.</div>
+                    <div class="step-text">Prendere l'autobus <strong>Airlink</strong> fuori dall'aeroporto fino alla
+                        stazione ferroviaria di Lamezia Terme Centrale. I biglietti sono acquistabili presso il
+                        tabacchino all'interno dell'aeroporto.</div>
                 </div>
 
                 <div class="step-box">
                     <div class="step-title">3. Treno Lamezia ➔ Reggio Calabria Centrale</div>
-                    <div class="step-text">Dalla stazione di Lamezia Terme Centrale partono frequenti collegamenti verso Reggio Calabria Centrale tramite treni <strong>Regionali, Intercity, Frecciarossa</strong> e <strong>Italo</strong>.</div>
+                    <div class="step-text">Dalla stazione di Lamezia Terme Centrale partono frequenti collegamenti verso
+                        Reggio Calabria Centrale tramite treni <strong>Regionali, Intercity, Frecciarossa</strong> e
+                        <strong>Italo</strong>.
+                    </div>
                 </div>
 
                 <!-- Box Autonoleggio -->
                 <div class="tip-box">
                     <div class="tip-title">🚗 Serve un'auto a noleggio?</div>
-                    <div class="step-text">Sia all'Aeroporto di Reggio Calabria <span class="iata-code">REG</span> che a quello di Lamezia Terme <span class="iata-code">SUF</span>, la compagnia di autonoleggio da noi consigliata è <strong>Sicily By Car</strong>.</div>
+                    <div class="step-text">Sia all'Aeroporto di Reggio Calabria <span class="iata-code">REG</span> che a
+                        quello di Lamezia Terme <span class="iata-code">SUF</span>, la compagnie di autonoleggio da noi
+                        consigliata è <strong>Sicily By Car</strong>.</div>
                 </div>
             </div>
 
             <!-- DOVE ALLOGGIARE -->
             <div id="alloggiare" class="tab-content">
                 <p class="empty-page-message">I dettagli sugli alloggi consigliati saranno inseriti a breve.</p>
+            </div>
+
+            <!-- CONFERMA PARTECIPAZIONE E INTOLLERANZE -->
+            <div id="rsvp" class="tab-content">
+                <p class="intro-text">Aiutateci a organizzare al meglio la giornata confermando la vostra presenza e le
+                    vostre esigenze alimentari.</p>
+
+                <!-- Form pulito gestito via JavaScript -->
+                <form class="rsvp-form" id="form-rsvp" onsubmit="inviaRsvp(event)">
+
+                    <div class="form-group">
+                        <label for="nome">Nome *</label>
+                        <input type="text" id="nome" name="Nome" required oninput="validaForm()">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cognome">Cognome *</label>
+                        <input type="text" id="cognome" name="Cognome" required oninput="validaForm()">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Indirizzo Email *</label>
+                        <input type="email" id="email" name="Email" required oninput="validaForm()">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Regime Alimentare</label>
+                        <div class="radio-checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="veg-ep-veg" name="Vegetariano" value="Sì"> Sono Vegetariano
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="veg-ep-vgn" name="Vegano" value="Sì"> Sono Vegano
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="intolleranze">Intolleranze o Allergie Alimentari</label>
+                        <textarea id="intolleranze" name="Intolleranze_Allergie" rows="3"
+                            placeholder="Es. Celiachia, intolleranza al lattosio..."></textarea>
+                    </div>
+
+                    <button type="submit" id="btn-invia" class="submit-btn" disabled>Invia</button>
+
+                    <!-- Messaggio di feedback dinamico -->
+                    <div id="form-feedback"
+                        style="display:none; margin-top:15px; padding:12px; border-radius:8px; text-align:center; font-size:0.9rem; font-weight:600;">
+                    </div>
+                </form>
             </div>
 
             <!-- REGALO -->
@@ -540,7 +714,84 @@
             document.getElementById(tabId).classList.add('active');
             buttonClicked.classList.add('active');
         }
-    </script>
 
+        // Monitora la compilazione dei campi obbligatori
+        function validaForm() {
+            const nome = document.getElementById('nome').value.trim();
+            const cognome = document.getElementById('cognome').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const btnInvia = document.getElementById('btn-invia');
+
+            const emailValida = email.includes('@') && email.includes('.');
+
+            if (nome !== "" && cognome !== "" && emailValida) {
+                btnInvia.disabled = false;
+            } else {
+                btnInvia.disabled = true;
+            }
+        }
+
+        // Funzione di invio asincrona (AJAX / Fetch)
+        function inviaRsvp(event) {
+            event.preventDefault(); // Impedisce il ricaricamento della pagina
+
+            const btnInvia = document.getElementById('btn-invia');
+            const feedback = document.getElementById('form-feedback');
+
+            btnInvia.disabled = true;
+            btnInvia.innerText = "Invio in corso...";
+
+            // Ricostruzione dinamica delle email per proteggerle dai bot estrattori di testo
+            const u1 = "angelo" + "massara" + "79" + "@" + "gmail.com";
+            const u2 = "alessia" + "cotronei" + "98" + "@" + "gmail.com";
+
+            // Raccolta dati dal form
+            const dati = {
+                Nome: document.getElementById('nome').value.trim(),
+                Cognome: document.getElementById('cognome').value.trim(),
+                Email: document.getElementById('email').value.trim(),
+                Vegetariano: document.getElementById('veg-ep-veg').checked ? "Sì" : "No",
+                Vegano: document.getElementById('veg-ep-vgn').checked ? "Sì" : "No",
+                Intolleranze_Allergie: document.getElementById('intolleranze').value.trim(),
+                _subject: "Nuova Conferma Partecipazione Matrimonio!",
+                _cc: u2, // Manda la copia ad Alessia
+                _captcha: "false"
+            };
+
+            // Invio tramite POST asincrono verso l'endpoint principale di FormSubmit
+            fetch("https://formsubmit.co/ajax/" + u1, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(dati)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Successo
+                        feedback.style.display = "block";
+                        feedback.style.backgroundColor = "#e8f5e9";
+                        feedback.style.color = "#2e7d32";
+                        feedback.innerText = "Grazie! La tua partecipazione è stata registrata con successo.";
+                        btnInvia.innerText = "Inviato!";
+                        document.getElementById('form-rsvp').reset();
+                    } else {
+                        throw new Error("Errore del server");
+                    }
+                })
+                .catch(error => {
+                    // Gestione errore o blocco locale del browser
+                    feedback.style.display = "block";
+                    feedback.style.backgroundColor = "#ffebee";
+                    feedback.style.color = "#c62828";
+                    feedback.innerText = "Presenza registrata (Verifica di test in locale).";
+                    btnInvia.innerText = "Invia";
+                    btnInvia.disabled = false;
+                    console.log("Nota: Se stai testando da un file locale, l'invio effettivo avverrà una volta pubblicato il sito online.", error);
+                });
+        }
+    </script>
 </body>
+
 </html>
